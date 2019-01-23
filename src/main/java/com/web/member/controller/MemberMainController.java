@@ -1,7 +1,10 @@
 package com.web.member.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.web.member.service.MemberService;
 
 import lombok.AllArgsConstructor;
 
@@ -10,8 +13,11 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class MemberMainController {
 	
+	private MemberService memberService;
+	
 	@GetMapping("/")
-	public String main() {
+	public String main(Model model) {
+		model.addAttribute("memberList", memberService.getMemberList());
 		return "main";
 	}
 }

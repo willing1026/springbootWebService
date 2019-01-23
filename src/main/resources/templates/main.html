@@ -10,26 +10,98 @@
        <h1> member list page </h1>
 
       <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberRegisterModal">
+            회원정보등록
         </button>
+        
+        <table class="table">
+            <thead class="thead-dark">
+                <th>no</th>
+                <th>userId</th>
+                <th>name</th>
+                <th>age</th>
+                <th>update</th>
+                <th>delete</th>
+            </thead>
+            <tbody>
+                <tr scope="col" th:each="member : ${memberList}">
+                    <td th:text="${member.no}"></td>
+                    <td th:text="${member.userId}"></td>
+                    <td th:text="${member.name}"></td>
+                    <td th:text="${member.age}"></td>
+                    <td>
+                        <button class="btn btn-secondary btn-member-update" type="button" data-toggle="modal" data-target="#memberUpdateModal">수정</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-secondary btn-member-delete" type="button">삭제</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- memberRegisterModal -->
+        <div class="modal fade" id="memberRegisterModal" tabindex="-1" role="dialog" aria-labelledby="memberRegisterModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="memberRegisterModalLabel">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <form>
+                            <div class="form-group">
+                                <label for="userId">User Id</label>
+                                <input type="text" class="form-control" id="userId" placeholder="userId">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="text" class="form-control" id="age" placeholder="age">
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary" id="btn-member-post">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                <!-- Modal -->
+        <div class="modal fade" id="memberUpdateModal" tabindex="-1" role="dialog" aria-labelledby="memberUpdateModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="memberUpdateModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="userId">User Id</label>
+                                <input type="text" readonly class="form-control" id="userId">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="text" class="form-control" id="age" placeholder="age">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btn-member-register">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -37,5 +109,6 @@
       
        <script src="/js/lib/jquery.min.js"></script>
        <script src="/js/lib/bootstrap.min.js"></script>
+       <script src="/js/app/main.js"></script>
     </body>
 </html>
